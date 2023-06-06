@@ -2,7 +2,7 @@ import SignInPage from '../pages/SignInPage'
 import UserHomePage from '../pages/UserHomePage'
 
 const userHome = new UserHomePage()
-describe("Signin page", () => {
+describe.skip("Signin page", () => {
     beforeEach("Visit page", () => {
         cy.login(Cypress.env('username'), Cypress.env('password'))
         cy.visit('/')

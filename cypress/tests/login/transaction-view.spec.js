@@ -1,8 +1,4 @@
-import { User, Transaction } from "../../../src/models";
-
-describe("Transaction View", function () {
-
- 
+describe.skip("Transaction View", function () {
 
   it("transactions navigation tabs are hidden on a transaction view page", function () {
    

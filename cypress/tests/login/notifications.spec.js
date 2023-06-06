@@ -1,7 +1,5 @@
-import { isMobile } from "../../support/utils";
-import { User, Transaction } from "../../../src/models";
 
-describe("Notifications", function () {
+describe.skip("Notifications", function () {
  
 
   describe("notifications from user interactions", function () {

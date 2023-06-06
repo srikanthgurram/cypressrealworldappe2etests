@@ -56,7 +56,7 @@ describe("User Signup and Login", () => {
         cy.url().should('contain', '/signin')
         login('testuser1234', 's3cret')
         cy.url().should('be.equal', `${Cypress.config('baseUrl')}/` )
-        userHomePage.elements.userOnboardingTitle().should('exist').and('have.text', 'Get Started with Real world App')
+        userHomePage.elements.userOnboardingTitle().should('exist').and('have.text', 'Get Started with Real World App')
         // userHomePage.elements.logoutButton().click()
         // cy.url().should('contain', '/signin')
     })
