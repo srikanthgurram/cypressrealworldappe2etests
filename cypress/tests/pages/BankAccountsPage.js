@@ -2,9 +2,9 @@ export default class BankAccountsPage {
     elements = {
         createBankAccountTitle : () => cy.get('[data-test="user-onboarding-dialog-title"]').contains('Create Bank Account'),
         saveBankAccountDetailsButton : () => cy.get('[data-test="bankaccount-submit"]').contains('Save'),
-        bankNameField : () => cy.get('[data-test="bankaccount-bankName-input"]').contains(''),
-        routingNumberField : () => cy.get('[data-test="bankaccount-routingNumber-input"]'),
-        accountNumberField : () => cy.get('[data-test="bankaccount-accountNumber-input"]'),
+        bankNameField : () => cy.get('#bankaccount-bankName-input'),
+        routingNumberField : () => cy.get('#bankaccount-routingNumber-input'),
+        accountNumberField : () => cy.get('#bankaccount-accountNumber-input'),
         bankNameHelperText : () => cy.get('#bankaccount-bankName-input-helper-text'), 
         bankRoutingNumberHelperText : () => cy.get('#bankaccount-routingNumber-input-helper-text'),
         bankNumberHelperText : () => cy.get('#bankaccount-accountNumber-input-helper-text'),

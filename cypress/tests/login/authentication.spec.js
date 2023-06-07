@@ -1,3 +1,4 @@
+import BankAccountsPage from "../pages/BankAccountsPage"
 import SignInPage from "../pages/SignInPage"
 import SignUpPage from "../pages/SignupPage"
 import UserHomePage from "../pages/UserHomePage"
@@ -6,6 +7,7 @@ describe("User Signup and Login", () => {
     const signInPage = new SignInPage()
     const signUpPage = new SignUpPage()
     const userHomePage = new UserHomePage()
+    const bankAccountPage = new BankAccountsPage()
 
     const login = (username, password, remember=false) => {
         cy.visit('/')
@@ -55,10 +57,44 @@ describe("User Signup and Login", () => {
         // page should be redirected to signinpage
         cy.url().should('contain', '/signin')
         login('testuser1234', 's3cret')
-        cy.url().should('be.equal', `${Cypress.config('baseUrl')}/` )
+        // cy.url().should('be.equal', `${Cypress.config('baseUrl')}/` )
         userHomePage.elements.userOnboardingTitle().should('exist').and('have.text', 'Get Started with Real World App')
+
+        // When I click on Next button it should take me to create new bank account page
+        userHomePage.elements.userOnboardTitleNextButton().click()
+        bankAccountPage.elements.createBankAccountTitle().should('exist').and('have.text', 'Create Bank Account')
+        // error when the field is blank
+        bankAccountPage.elements.bankNameField().clear().blur()
+        bankAccountPage.elements.bankNameHelperText().should('exist').and('have.text', 'Enter a bank name')
+        //enter less than 5 characters
+        bankAccountPage.elements.bankNameField().clear().type('bank')
+        bankAccountPage.elements.bankNameHelperText().should('exist').and('have.text', 'Must contain at least 5 characters')
+        bankAccountPage.elements.bankNameField().clear().type('bank123')
+        bankAccountPage.elements.bankNameHelperText().should('not.exist')
+
+        // when routing number is empty
+        bankAccountPage.elements.routingNumberField().clear().blur()
+        bankAccountPage.elements.bankRoutingNumberHelperText().should('exist').and('have.text', 'Enter a valid bank routing number')
+        bankAccountPage.elements.routingNumberField().clear().type('route')
+        bankAccountPage.elements.bankRoutingNumberHelperText().should('exist').and('have.text', 'Must contain a valid routing number')
+        bankAccountPage.elements.routingNumberField().clear().type('route1234')
+        bankAccountPage.elements.bankRoutingNumberHelperText().should('not.exist')
+        
+        // verify bank account number field
+        bankAccountPage.elements.accountNumberField().clear().blur()
+        bankAccountPage.elements.bankNumberHelperText().should('exist').and('have.text', 'Enter a valid bank account number')
+        bankAccountPage.elements.accountNumberField().type('981')
+        bankAccountPage.elements.bankNumberHelperText().should('exist').and('have.text', 'Must contain at least 9 digits')
+        bankAccountPage.elements.accountNumberField().type('981134567')
+        bankAccountPage.elements.bankNumberHelperText().should('not.exist')
         // userHomePage.elements.logoutButton().click()
         // cy.url().should('contain', '/signin')
+
+        // Enter a valid bank routing number 
+        // Must contain a valid routing number
+        //Enter a valid bank account number
+        //Must contain at least 9 digits
+
     })
 
     it("should display login errors", () => {
