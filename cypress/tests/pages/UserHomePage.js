@@ -10,7 +10,8 @@ export default class UserHomePage {
         bankAccountsNavLink: () => cy.get('[data-test="sidenav"] ul a').filter(':contains("Bank Accounts")'),
         notificationsNavigationLink: () => cy.get('[data-test="sidenav-notifications"]'),
         logoutButton: () => cy.get('[data-test="sidenav-signout"]'),
-        userOnboardingTitle: () => cy.get('[data-test="user-onboarding-dialog-title"]').contains('Get Started with Real World App')
+        userOnboardingTitle: () => cy.get('[data-test="user-onboarding-dialog-title"]').contains('Get Started with Real World App'),
+        userOnboardTitleNextButton: () => cy.get('[data-test="user-onboarding-next"]')
     }
 
     getUserFullName() {
